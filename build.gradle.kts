@@ -3,26 +3,27 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val junitVersion: String by project
 
 plugins {
-    kotlin("jvm") version "1.4.21"
+  kotlin("jvm") version "1.4.21"
 }
 
 group = "cl.ravenhill"
 version = "0.0.1"
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-    testImplementation(kotlin("test-junit5"))
-    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+  implementation("org.junit.jupiter:junit-jupiter:5.4.2")
+  testImplementation(kotlin("test-junit5"))
+  testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 }
 
 tasks.test {
-    useJUnitPlatform()
+  useJUnitPlatform()
 }
 
-tasks.withType<KotlinCompile>() {
-    kotlinOptions.jvmTarget = "13"
+tasks.withType<KotlinCompile> {
+  kotlinOptions.jvmTarget = "13"
 }
