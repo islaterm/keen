@@ -20,7 +20,10 @@ internal class GeneTest {
 
   @RepeatedTest(16)
   fun `creation of a gene from a binary alphabet`() {
-    val alphabet = listOf(0, 1)
+    geneFromAlphabetCheck(listOf(0, 1))
+  }
+
+  private fun geneFromAlphabetCheck(alphabet: List<Any>) {
     val expectedGene = Gene(alphabet.shuffled(Random(seed))[0])
     val actualGene = Gene.fromAlphabet(alphabet)
     assertSame(expectedGene, expectedGene)
