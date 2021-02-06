@@ -7,6 +7,8 @@
  */
 package cl.ravenhill.keen
 
+import java.util.*
+
 /**
  * Genes are the base of the _Keen_ framework.
  * The actual information used by the algorithms is stored in the genes.
@@ -20,9 +22,17 @@ package cl.ravenhill.keen
  *
  * @author [Ignacio Slater Muñoz](mailto:islaterm@gmail.com)
  */
-class Gene<DNA> internal constructor(val dna: DNA) {
+class Gene<DNA: Any> internal constructor(val dna: DNA) {
 
   companion object {
-    fun <DNA> fromAlphabet(alphabet: List<DNA>) = Gene(alphabet.shuffled(Keen.random)[0])
+    fun <DNA: Any> fromAlphabet(alphabet: List<DNA>) = Gene(alphabet.shuffled(Keen.random)[0])
+  }
+
+  override fun equals(other: Any?) = other is Gene<*> && other.dna == dna
+
+  override fun hashCode() = Objects.hash(Gene::class, dna)
+
+  override fun toString(): String {
+    return "Gene<${dna::class.simpleName}>($dna)"
   }
 }
