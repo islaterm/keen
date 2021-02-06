@@ -23,6 +23,11 @@ internal class GeneTest {
     geneFromAlphabetCheck(listOf(0, 1))
   }
 
+  @RepeatedTest(16)
+  fun `creation of a gene from a ascii alphabet`() {
+    geneFromAlphabetCheck(('a'..'z') + ('A'..'Z') + ('0'..'9'))
+  }
+
   private fun geneFromAlphabetCheck(alphabet: List<Any>) {
     val expectedGene = Gene(alphabet.shuffled(Random(seed))[0])
     val actualGene = Gene.fromAlphabet(alphabet)
